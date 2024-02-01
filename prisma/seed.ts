@@ -90,7 +90,7 @@ async function seedDatabase() {
                 name: "Hidratação",
                 description: "Hidratação profunda para cabelo e barba.",
                 price: 25.0,
-                imageUrl: "Fios hidratados, macios e brilhantes.",
+                imageUrl: "https://utfs.io/f/c4919193-a675-4c47-9f21-ebd86d1c8e6a-4oen2a.png",
             },
         ];
 
@@ -101,7 +101,7 @@ async function seedDatabase() {
             const address = addresses[i];
             const imageUrl = images[i];
 
-            const barbershop = await prisma.barberShop.create({
+            const barbershop = await prisma.barbershop.create({
                 data: {
                     name,
                     address,
@@ -115,7 +115,7 @@ async function seedDatabase() {
                         name: service.name,
                         description: service.description,
                         price: service.price,
-                        barberShop: {
+                        barbershop: {
                             connect: {
                                 id: barbershop.id,
                             },
