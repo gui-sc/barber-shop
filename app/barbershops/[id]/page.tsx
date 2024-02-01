@@ -7,9 +7,9 @@ interface BarbershopDetailsPageProps {
     }
 }
 const BarbershopDetailsPage = async ({ params }: BarbershopDetailsPageProps) => {
-    
+
     if (!params.id) return (<h1>Barbershop not found</h1>)
-    
+
 
     const barbershop = await db.barbershop.findUnique({
         where: {
@@ -23,9 +23,11 @@ const BarbershopDetailsPage = async ({ params }: BarbershopDetailsPageProps) => 
     return (
         <div>
             <BarberShopInfo barbershop={barbershop} />
-            {barbershop.services.map(service => (
-                <ServiceItem key={service.id} service={service} />
-            ))}
+            <div className="px-5 flex flex-col gap-3 py-6">
+                {barbershop.services.map(service => (
+                    <ServiceItem key={service.id} service={service} />
+                ))}
+            </div>
         </div>
     );
 }
