@@ -6,6 +6,7 @@ import {db} from "../_lib/prisma";
 import BarbershopItem from "./_components/barbershop-item";
 import { Barbershop } from "@prisma/client";
 import Search from "./_components/search";
+import UserMessage from "./_components/user-message";
 
 export default async function Home() {
   const barbershops: Barbershop[] = await db.barbershop.findMany({});
@@ -14,7 +15,7 @@ export default async function Home() {
       <Header />
       <div className="px-5 pt-5">
 
-        <h2 className="text-xl font-bold"> Olá, Guilherme!</h2>
+        <UserMessage />
         <p className="text-sm">
           {format(new Date(), "EEEE',' dd 'de' MMMM", {
             locale: ptBR
