@@ -4,6 +4,8 @@ import { Button } from "../../../_components/ui/button";
 import { ChevronLeftIcon, MapPinIcon, MenuIcon, StarIcon } from "lucide-react";
 import { Barbershop } from "@prisma/client";
 import { useRouter } from "next/navigation";
+import SideMenu from "../../../_components/side-menu";
+import { SheetTrigger, SheetContent, Sheet } from "../../../_components/ui/sheet";
 
 interface BarbershopInfoProps {
     barbershop: Barbershop
@@ -17,14 +19,22 @@ const BarberShopInfo = ({barbershop}: BarbershopInfoProps) => {
     return ( 
         <div>
             <div className="h-[250px] w-full relative">
-                <Image src={barbershop.imageUrl} fill alt={barbershop.name}
-                    className="opacity-75" style={{ objectFit: 'cover' }} />
                 <Button onClick={handleBackClick} size={"icon"} variant={"outline"} className="z-50 top-4 left-4 absolute" >
                     <ChevronLeftIcon />
                 </Button>
-                <Button size={"icon"} variant={"outline"} className="z-50 top-4 right-4 absolute" >
-                    <MenuIcon />
-                </Button>
+                <Sheet>
+                    <SheetTrigger asChild>
+                        <Button variant="outline" size="icon" className="z-50 absolute top-4 right-4">
+                            <MenuIcon size={14} />
+                        </Button>
+                    </SheetTrigger>
+
+                    <SheetContent className="p-0">
+                        <SideMenu />
+                    </SheetContent>
+                </Sheet>
+                <Image src={barbershop.imageUrl} fill alt={barbershop.name}
+                    className="opacity-75" style={{ objectFit: 'cover' }} />
             </div>
             <div>
                 <div className="px-5 pt-3 pb-6 border-b border-solid border-secondary">
